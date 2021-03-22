@@ -1,33 +1,35 @@
-import React, { Component } from 'react'
-import { StyleSheet, Switch, View, Text } from 'react-native'
+import React, { useState } from 'react'
+import { StyleSheet, Switch, View, Text, TouchableOpacity } from 'react-native'
 
-export default class SwitchExample extends Component {
-  state = {
-    switchValue: true
-  };
-
-  render() {
-    return (
-      
+ const DarkMode = () =>{
+   const [isDarkMode, setDarkMode] = useState(false);
+    return ( 
      <View style={styles.body}>
           <View style={{
-            backgroundColor: (this.state.switchValue ? 'white' : 'black'),
+            backgroundColor: (isDarkMode ? 'black' : 'white'),
             height: '100%', width: '100%',  alignItems: 'center',
           }}>
+
             <Switch
-              value={this.state.switchValue}
-              onValueChange={(switchValue) => this.setState({ switchValue })} />
+              value={isDarkMode}
+              onValueChange={() => setDarkMode(!isDarkMode)}
+             />
+
+            <Text style={{ color: (isDarkMode ? 'white' : 'black') }}>
+                  Hello :) 
+            </Text>
 
           </View>
      </View>
     );
-  }
-}
+ }
+
 const styles = StyleSheet.create({
   body:{
     justifyContent: 'center',
     alignItems: 'center',
-   // backgroundColor: 'red',
-      height: '100%',
+    height: '100%',
   }
 })
+
+export default DarkMode;
