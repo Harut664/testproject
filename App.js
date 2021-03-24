@@ -1,35 +1,23 @@
 import React, { useState } from 'react'
-import { StyleSheet, Switch, View, Text, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView, Image  } from 'react-native'
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
 
- const DarkMode = () =>{
-   const [isDarkMode, setDarkMode] = useState(false);
-    return ( 
-     <View style={styles.body}>
-          <View style={{
-            backgroundColor: (isDarkMode ? 'black' : 'white'),
-            height: '100%', width: '100%',  alignItems: 'center',
-          }}>
+import Movies from './src/screen/movescreen';
+import MovieDetails from './src/screen/movkino';
+import { createStackNavigator } from '@react-navigation/stack';
 
-            <Switch
-              value={isDarkMode}
-              onValueChange={() => setDarkMode(!isDarkMode)}
-             />
+const Stack = createStackNavigator();
 
-            <Text style={{ color: (isDarkMode ? 'white' : 'black') }}>
-                  Hello :) 
-            </Text>
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator >
 
-          </View>
-     </View>
-    );
- }
-
-const styles = StyleSheet.create({
-  body:{
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100%',
-  }
-})
-
-export default DarkMode;
+        <Stack.Screen name="Movies" component={Movies} screenOptions={{ headerShown: false }} />
+        <Stack.Screen name="MovieDetails" component={MovieDetails} />
+        
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
