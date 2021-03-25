@@ -1,33 +1,23 @@
-import React, { Component } from 'react'
-import { StyleSheet, Switch, View, Text } from 'react-native'
+import React, { useState } from 'react'
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView, Image  } from 'react-native'
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
 
-export default class SwitchExample extends Component {
-  state = {
-    switchValue: true
-  };
+import Movies from './src/screen/movescreen';
+import MovieDetails from './src/screen/movkino';
+import { createStackNavigator } from '@react-navigation/stack';
 
-  render() {
-    return (
-      
-     <View style={styles.body}>
-          <View style={{
-            backgroundColor: (this.state.switchValue ? 'white' : 'black'),
-            height: '100%', width: '100%',  alignItems: 'center',
-          }}>
-            <Switch
-              value={this.state.switchValue}
-              onValueChange={(switchValue) => this.setState({ switchValue })} />
+const Stack = createStackNavigator();
 
-          </View>
-     </View>
-    );
-  }
-}
-const styles = StyleSheet.create({
-  body:{
-    justifyContent: 'center',
-    alignItems: 'center',
-   // backgroundColor: 'red',
-      height: '100%',
-  }
-})
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator >
+
+        <Stack.Screen name="Movies" component={Movies} screenOptions={{ headerShown: false }} />
+        <Stack.Screen name="MovieDetails" component={MovieDetails} />
+        
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
